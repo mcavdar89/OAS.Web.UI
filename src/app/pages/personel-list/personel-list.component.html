@@ -19,7 +19,7 @@
                 <button type="button" class="btn btn-warning" data-bs-toggle="modal"
                     data-bs-target="#exampleModal"
                     (click)="personelAlisVerisListesiGetir(item)">
-                    >+</button>
+                    +</button>
             </td>
         </tr>
         }
@@ -38,7 +38,7 @@
             </div>
             <div class="modal-body">
                 @if(seciliPersonel){
-                    <app-sepet-olustur [alisVerisList]="seciliSepetList!" (sepetTamamlandi)="personelSepetiOlustu($event)"></app-sepet-olustur>
+                    <app-sepet-olustur [personelId]="seciliPersonel.id" (sepetTamamlandi)="personelSepetiOlustu($event)"></app-sepet-olustur>
                 }
                 
             </div>

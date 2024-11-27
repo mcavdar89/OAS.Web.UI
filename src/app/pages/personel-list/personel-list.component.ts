@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { Personel } from '../../models/personel.model';
 import { SepetOlusturComponent } from '../sepet-olustur/sepet-olustur.component';
 import { AlisVerisList } from '../../models/alisveris-list.model';
+import { PersonelService } from '../../services/personel.service';
 
 @Component({
   selector: 'app-personel-list',
@@ -15,37 +16,25 @@ export class PersonelListComponent implements OnInit {
   seciliPersonel: Personel | undefined;
   seciliSepetList: AlisVerisList[] | undefined;
 
+  private _service: PersonelService;
 
   //injection ları yönetiriz
-  constructor() { }
+  constructor() {
+    this._service = inject(PersonelService);
+  }
 
   //ilgili list  veya yüklenmesi gereken verileri burada yükleriz
   ngOnInit(): void {
-    this.personelList = [
-      {
-        id: 1,
-        ad: 'Ali',
-        soyad: 'DEMİRKIRAN',
-        birimId: 1,
-        birimAd: 'Yazılım',
-      },
-      {
-        id: 2,
-        ad: 'Veli',
-        soyad: 'ÜSTÜN',
-        birimId: 2,
-        birimAd: 'Yazılım',
-      },
-      {
-        id: 3,
-        ad: 'Ayşe',
-        soyad: 'KAYA',
-        birimId: 3,
-        birimAd: 'Yazılım',
-      }
-    ]
-  }
+    console.log('personel ngOnInit çalıştı');
+    this._service.getPersonelList().subscribe(resp => {
+      this.personelList = resp;
+      debugger;
+      console.log('personel listesi : ', this.personelList);  //gelen verileri ne ise onu yazdırır
 
+    });
+    console.log('personel ngOnInit bitti');
+
+  }
   personelAlisVerisListesiGetir(item: Personel) {
 
     debugger;
@@ -53,7 +42,7 @@ export class PersonelListComponent implements OnInit {
     // this.seciliPersonel = {...item};
     // this.seciliPersonel = Object.assign({}, item);
     //referansı alır
-    this.seciliPersonel = {...item};
+    this.seciliPersonel = { ...item };
     if (!this.seciliPersonel.alisVerisList) {
       this.seciliPersonel.alisVerisList = [
         {
