@@ -1,0 +1,35 @@
+<div class="row">
+    <div class="col-10">
+        <p-dropdown [options]="urunList" optionValue="id" optionLabel="ad" [(ngModel)]="secilenUrunId" appendTo="body"
+            [style]="{'width':'100%'}"></p-dropdown>
+    </div>
+    <div class="col-2">
+        <p-button label="Ekle" (onClick)="urunEkle()" />
+    </div>
+</div>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Ürün Ad</th>
+            <th scope="col">Miktar</th>
+        </tr>
+    </thead>
+    <tbody>
+        @for (item of alisVerisList; track $index; let i = $index) {
+        <tr>
+            <th scope="row">{{i+1}}</th>
+            <td>{{item.urunAd}}</td>
+            <td>
+                <input type="number" pInputText [(ngModel)]="item.miktar" /></td>
+            <td>
+                <button type="button" class="btn btn-warning" (click)="urunSil(item.urunId)">Sil</button>
+            </td>
+        </tr>
+        }
+
+    </tbody>
+</table>
+
+

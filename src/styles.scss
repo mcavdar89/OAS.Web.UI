@@ -1,1 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
+.modal {
+    z-index: 900;
+}
+.modal-backdrop{
+    z-index: 800;
+}
