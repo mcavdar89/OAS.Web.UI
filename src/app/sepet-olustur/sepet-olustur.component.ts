@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { DropdownModule } from 'primeng/dropdown';
 import { Urun } from '../models/urun.model';
@@ -14,12 +14,20 @@ import { InputTextModule } from 'primeng/inputtext';
 })
 export class SepetOlusturComponent implements OnInit {
   @Input() alisVerisList: AlisVerisList[] = [];
+
+  @Output() sepetTamamlandi: EventEmitter<AlisVerisList[]> = new EventEmitter<AlisVerisList[]>();
+
+
+
   urunList: Urun[] | undefined;
   secilenUrunId: number | undefined;
+
   constructor() {
+    console.log("SepetOlusturComponent constructor çalıştı");
   }
 
   ngOnInit(): void {
+    console.log("SepetOlusturComponent ngOnInit çalıştı");
     this.urunList = [
       { id: 1, ad: 'Elma', miktarTuru: 'Kg' },
       { id: 2, ad: 'Armut', miktarTuru: 'Kg' },
@@ -49,7 +57,7 @@ export class SepetOlusturComponent implements OnInit {
 
     let secilenUrun = this.urunList?.filter(d => d.id == this.secilenUrunId)[0];
 
-    this.alisVerisList.push({ id: 0, urunId: this.secilenUrunId, urunAd: secilenUrun?.ad! });
+    this.alisVerisList.push({ id: 0, urunId: this.secilenUrunId, urunAd: secilenUrun?.ad!,miktar:1 });
 
     this.secilenUrunId = undefined;
 
@@ -64,6 +72,8 @@ export class SepetOlusturComponent implements OnInit {
     
     //this.alisVerisList = this.alisVerisList.filter(d => d.urunId != urunId);
   }
-
+  sepetiTamamla(){
+    this.sepetTamamlandi.emit(this.alisVerisList);
+  }
 
 }
