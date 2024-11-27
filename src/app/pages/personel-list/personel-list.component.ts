@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Personel } from '../models/personel.model';
+import { Personel } from '../../models/personel.model';
 import { SepetOlusturComponent } from '../sepet-olustur/sepet-olustur.component';
-import { AlisVerisList } from '../models/alisveris-list.model';
+import { AlisVerisList } from '../../models/alisveris-list.model';
 
 @Component({
   selector: 'app-personel-list',
@@ -82,7 +82,7 @@ export class PersonelListComponent implements OnInit {
   }
   personelSepetiOlustu(item: AlisVerisList[]) {
 
-    this.personelList?.filter(d => d.id == this.seciliPersonel?.id)[0].alisVerisList = item;
+    this.personelList!.filter(d => d.id == this.seciliPersonel?.id)[0].alisVerisList = item;
 
 
     this.seciliPersonel!.alisVerisList = item;

@@ -1,9 +1,9 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { DropdownModule } from 'primeng/dropdown';
-import { Urun } from '../models/urun.model';
+import { Urun } from '../../models/urun.model';
 import { ButtonModule } from 'primeng/button';
-import { AlisVerisList } from '../models/alisveris-list.model';
+import { AlisVerisList } from '../../models/alisveris-list.model';
 import { InputTextModule } from 'primeng/inputtext';
 
 @Component({
