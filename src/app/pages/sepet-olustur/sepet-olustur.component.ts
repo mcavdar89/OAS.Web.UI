@@ -3,10 +3,11 @@ import { FormsModule } from '@angular/forms';
 import { DropdownModule } from 'primeng/dropdown';
 import { Urun } from '../../models/urun.model';
 import { ButtonModule } from 'primeng/button';
-import { AlisVerisList } from '../../models/personel-sepet-urun.model';
+
 import { InputTextModule } from 'primeng/inputtext';
 import { PersonelService } from '../../services/personel.service';
 import { UrunService } from '../../services/urun.service';
+import { PersonelSepet } from '../../models/personel-sepet';
 
 @Component({
   selector: 'app-sepet-olustur',
@@ -17,11 +18,14 @@ import { UrunService } from '../../services/urun.service';
 export class SepetOlusturComponent implements OnInit {
   @Input() personelId: number | undefined;
 
-  @Output() sepetTamamlandi: EventEmitter<AlisVerisList[]> = new EventEmitter<AlisVerisList[]>();
+  @Output() sepetTamamlandi: EventEmitter<number> = new EventEmitter<number>();
 
 
-  alisVerisList: AlisVerisList[] = [];
+  personelSepet: PersonelSepet | undefined;
+  //dropdown için gerekli
   urunList: Urun[] | undefined;
+
+  //dropdown ngModel
   secilenUrunId: number | undefined;
 
   private _personelService: PersonelService;
@@ -39,7 +43,10 @@ export class SepetOlusturComponent implements OnInit {
 
     this._personelService.getPersonelSepet(this.personelId!).subscribe(resp => {
       debugger;
-      this.alisVerisList = resp.personelSepetUrunList;
+      if (resp.isSuccess)
+        this.personelSepet = resp.data
+      else
+        alert(resp.message);
     });
 
     this._urunService.getUrunListForDropDown().subscribe(resp => {
@@ -54,14 +61,21 @@ export class SepetOlusturComponent implements OnInit {
       alert("önce ürün seçmeniz gerekiyor!");
       return;
     }
-    else if (this.alisVerisList.filter(d => d.urunId == this.secilenUrunId).length > 0) {
+    else if (this.personelSepet!.personelSepetUrunList!.filter(d => d.urunId == this.secilenUrunId).length > 0) {
       alert("bu ürün zaten ekli");
       return;
     }
 
     let secilenUrun = this.urunList?.filter(d => d.id == this.secilenUrunId)[0];
-
-    this.alisVerisList.push({ id: 0, urunId: this.secilenUrunId, urunAd: secilenUrun?.ad!, miktar: 1 });
+/*
+id: string
+    personelSepetId: string
+    urunId: number
+    urunAd: string
+    miktar: number
+    tutar: number
+*/
+    this.personelSepet?.personelSepetUrunList.push({ id: 'as',personelSepetId:this.personelSepet.id, urunId: this.secilenUrunId, urunAd: secilenUrun!.ad!, miktar: 1, tutar: 0 });
 
     this.secilenUrunId = undefined;
 
@@ -70,14 +84,14 @@ export class SepetOlusturComponent implements OnInit {
   }
 
   urunSil(urunId: number) {
-    let index = this.alisVerisList.findIndex(d => d.urunId == urunId);
-    this.alisVerisList.splice(index, 1);
+    // let index = this.personelSepet?.personelSepetUrunList.findIndex(d => d.urunId == urunId);
+    // this.personelSepet?.personelSepetUrunList.splice(index!, 1);
 
 
-    //this.alisVerisList = this.alisVerisList.filter(d => d.urunId != urunId);
+    this.personelSepet!.personelSepetUrunList = this.personelSepet!.personelSepetUrunList.filter(d => d.urunId != urunId);
   }
   sepetiTamamla() {
-    this.sepetTamamlandi.emit(this.alisVerisList);
+    this.sepetTamamlandi.emit(this.personelSepet!.personelSepetUrunList.length);
   }
 
 }

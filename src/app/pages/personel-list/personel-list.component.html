@@ -34,8 +34,7 @@
     </ng-template>
     <ng-template pTemplate="content">
         @if(seciliPersonel && sepetVisible){
-        <app-sepet-olustur [personelId]="seciliPersonel!.id"
-            (sepetTamamlandi)="personelSepetiOlustu($event)"></app-sepet-olustur>
+        <app-sepet-olustur [personelId]="seciliPersonel!.id"></app-sepet-olustur>
         }
     </ng-template>
 

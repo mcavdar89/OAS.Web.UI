@@ -1,13 +1,13 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { Personel } from '../../models/personel.model';
 import { SepetOlusturComponent } from '../sepet-olustur/sepet-olustur.component';
-import { AlisVerisList } from '../../models/personel-sepet-urun.model';
+
 import { PersonelService } from '../../services/personel.service';
 import { DialogModule } from 'primeng/dialog';
 
 @Component({
   selector: 'app-personel-list',
-  imports: [SepetOlusturComponent,DialogModule ],
+  imports: [SepetOlusturComponent, DialogModule],
   templateUrl: './personel-list.component.html',
   styleUrl: './personel-list.component.scss'
 })
@@ -15,7 +15,6 @@ export class PersonelListComponent implements OnInit {
 
   personelList: Personel[] | undefined;
   seciliPersonel: Personel | undefined;
-  seciliSepetList: AlisVerisList[] | undefined;
 
   private _service: PersonelService;
 
@@ -30,7 +29,10 @@ export class PersonelListComponent implements OnInit {
   ngOnInit(): void {
     console.log('personel ngOnInit çalıştı');
     this._service.getPersonelList().subscribe(resp => {
-      this.personelList = resp;
+      if (resp.isSuccess)
+        this.personelList = resp.data;
+      else
+        alert(resp.message);
       debugger;
       console.log('personel listesi : ', this.personelList);  //gelen verileri ne ise onu yazdırır
 
@@ -63,7 +65,7 @@ export class PersonelListComponent implements OnInit {
       ];
     }
 
-    this.seciliSepetList = [...this.seciliPersonel.alisVerisList];
+    //this.seciliSepetList = [...this.seciliPersonel.alisVerisList];
     //kopyasını oluşturmanın diğer bir yolu
     //this.seciliSepetList = Object.assign([], this.seciliPersonel.alisVerisList);
     //bu şekilde de kopyasını oluşturabiliriz
@@ -72,13 +74,6 @@ export class PersonelListComponent implements OnInit {
 
     console.log('seçilen personel : ', item);
   }
-  personelSepetiOlustu(item: AlisVerisList[]) {
-
-    this.personelList!.filter(d => d.id == this.seciliPersonel?.id)[0].alisVerisList = item;
-
-
-    this.seciliPersonel!.alisVerisList = item;
-
-  }
+  
 
 }

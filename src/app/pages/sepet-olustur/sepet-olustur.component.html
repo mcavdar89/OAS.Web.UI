@@ -17,7 +17,7 @@
         </tr>
     </thead>
     <tbody>
-        @for (item of alisVerisList; track $index; let i = $index) {
+        @for (item of personelSepet?.personelSepetUrunList; track $index; let i = $index) {
         <tr>
             <th scope="row">{{i+1}}</th>
             <td>{{item.urunAd}}</td>
