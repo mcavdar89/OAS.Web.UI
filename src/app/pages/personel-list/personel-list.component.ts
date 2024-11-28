@@ -3,10 +3,11 @@ import { Personel } from '../../models/personel.model';
 import { SepetOlusturComponent } from '../sepet-olustur/sepet-olustur.component';
 import { AlisVerisList } from '../../models/alisveris-list.model';
 import { PersonelService } from '../../services/personel.service';
+import { DialogModule } from 'primeng/dialog';
 
 @Component({
   selector: 'app-personel-list',
-  imports: [SepetOlusturComponent],
+  imports: [SepetOlusturComponent,DialogModule ],
   templateUrl: './personel-list.component.html',
   styleUrl: './personel-list.component.scss'
 })
@@ -17,6 +18,8 @@ export class PersonelListComponent implements OnInit {
   seciliSepetList: AlisVerisList[] | undefined;
 
   private _service: PersonelService;
+
+  sepetVisible: boolean = false;
 
   //injection ları yönetiriz
   constructor() {
