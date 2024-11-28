@@ -48,22 +48,7 @@ export class PersonelListComponent implements OnInit {
     // this.seciliPersonel = Object.assign({}, item);
     //referansı alır
     this.seciliPersonel = { ...item };
-    if (!this.seciliPersonel.alisVerisList) {
-      this.seciliPersonel.alisVerisList = [
-        {
-          id: 1,
-          urunId: 1,
-          urunAd: 'Elma',
-          miktar: 1
-        },
-        {
-          id: 2,
-          urunId: 2,
-          urunAd: 'Armut',
-          miktar: 3
-        }
-      ];
-    }
+   
 
     //this.seciliSepetList = [...this.seciliPersonel.alisVerisList];
     //kopyasını oluşturmanın diğer bir yolu
@@ -73,6 +58,11 @@ export class PersonelListComponent implements OnInit {
     //this.seciliSepetList = JSON.parse(JSON.stringify(this.seciliPersonel.alisVerisList));
 
     console.log('seçilen personel : ', item);
+
+
+    this.sepetVisible = true;
+
+
   }
   
 
