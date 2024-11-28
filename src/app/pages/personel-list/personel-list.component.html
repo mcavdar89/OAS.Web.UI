@@ -5,6 +5,7 @@
             <th scope="col">Ad</th>
             <th scope="col">Soyad</th>
             <th scope="col">Birim</th>
+            <th scope="col">Sepet</th>
             <th scope="col">Set Oluştur</th>
         </tr>
     </thead>
@@ -15,6 +16,7 @@
             <td>{{item.ad}}</td>
             <td>{{item.soyad}}</td>
             <td>{{item.birimAd}}</td>
+            <td>{{item.sepetUrunSayisi}}</td>
             <td>
                 <button type="button" class="btn btn-warning"
                     (click)="setPersonelSepet(item)">
@@ -34,7 +36,7 @@
     </ng-template>
     <ng-template pTemplate="content">
         @if(seciliPersonel && sepetVisible){
-        <app-sepet-olustur [personelId]="seciliPersonel!.id"></app-sepet-olustur>
+        <app-sepet-olustur [personelId]="seciliPersonel!.id" (sepetTamamlandi)="sepetTamalandi($event)"></app-sepet-olustur>
         }
     </ng-template>
 

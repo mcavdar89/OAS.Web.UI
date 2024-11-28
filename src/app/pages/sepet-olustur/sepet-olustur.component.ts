@@ -8,7 +8,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { PersonelService } from '../../services/personel.service';
 import { UrunService } from '../../services/urun.service';
 import { PersonelSepet } from '../../models/personel-sepet';
-
+import { Guid } from "guid-typescript";
 @Component({
   selector: 'app-sepet-olustur',
   imports: [FormsModule, DropdownModule, InputTextModule, ButtonModule],
@@ -67,15 +67,15 @@ export class SepetOlusturComponent implements OnInit {
     }
 
     let secilenUrun = this.urunList?.filter(d => d.id == this.secilenUrunId)[0];
-/*
-id: string
-    personelSepetId: string
-    urunId: number
-    urunAd: string
-    miktar: number
-    tutar: number
-*/
-    this.personelSepet?.personelSepetUrunList.push({ id: 'as',personelSepetId:this.personelSepet.id, urunId: this.secilenUrunId, urunAd: secilenUrun!.ad!, miktar: 1, tutar: 0 });
+    /*
+    id: string
+        personelSepetId: string
+        urunId: number
+        urunAd: string
+        miktar: number
+        tutar: number
+    */
+    this.personelSepet?.personelSepetUrunList.push({ id: Guid.create().toString(), personelSepetId: this.personelSepet.id, urunId: this.secilenUrunId, urunAd: secilenUrun!.ad!, miktar: 1, tutar: 0 });
 
     this.secilenUrunId = undefined;
 
@@ -91,7 +91,14 @@ id: string
     this.personelSepet!.personelSepetUrunList = this.personelSepet!.personelSepetUrunList.filter(d => d.urunId != urunId);
   }
   sepetiTamamla() {
-    this.sepetTamamlandi.emit(this.personelSepet!.personelSepetUrunList.length);
+    // this.sepetTamamlandi.emit(this.personelSepet!.personelSepetUrunList.length);
+    this._personelService.kaydetPersonelSepet(this.personelSepet!).subscribe(resp => {
+      if (resp.isSuccess) {
+        this.sepetTamamlandi.emit(this.personelSepet!.personelSepetUrunList.length);
+      }
+      else
+        alert(resp.message);
+    });
   }
 
 }

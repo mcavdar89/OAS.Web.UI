@@ -22,4 +22,11 @@ export class PersonelService {
   getPersonelSepet(personelId: number): Observable<ResultDto<PersonelSepet>> {
     return this.http.get<ResultDto<PersonelSepet>>("http://localhost:5100/api/OAS/getpersonelsepet/" + personelId);
   }
+
+  kaydetPersonelSepet(personelSepet: PersonelSepet): Observable<ResultDto<PersonelSepet>> {
+    return this.http.post<ResultDto<PersonelSepet>>("http://localhost:5100/api/OAS/kaydetpersonelsepet", personelSepet);
+  }
+
+
+
 }
