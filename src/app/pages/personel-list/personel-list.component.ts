@@ -40,14 +40,19 @@ export class PersonelListComponent implements OnInit {
     console.log('personel ngOnInit bitti');
 
   }
-  personelAlisVerisListesiGetir(item: Personel) {
+  setPersonelSepet(item: Personel) {
 
-    debugger;
+    console.log('seçilen personel : ', item);
+    this.seciliPersonel = item;
+    this.sepetVisible = true;
+
+    //açıklamlar
+    
     //kopyalarını oluştuturur
     // this.seciliPersonel = {...item};
     // this.seciliPersonel = Object.assign({}, item);
     //referansı alır
-    this.seciliPersonel = { ...item };
+    //this.seciliPersonel = { ...item };
    
 
     //this.seciliSepetList = [...this.seciliPersonel.alisVerisList];
@@ -57,10 +62,7 @@ export class PersonelListComponent implements OnInit {
     //Deep copy yapar
     //this.seciliSepetList = JSON.parse(JSON.stringify(this.seciliPersonel.alisVerisList));
 
-    console.log('seçilen personel : ', item);
-
-
-    this.sepetVisible = true;
+   
 
 
   }
