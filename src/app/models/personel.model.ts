@@ -1,4 +1,4 @@
-import { AlisVerisList } from "./alisveris-list.model";
+import { AlisVerisList } from "./personel-sepet-urun.model";
 
 export interface Personel {
 id: number;

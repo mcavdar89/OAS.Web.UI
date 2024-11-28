@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { ResultDto } from '../models/result-dto.model';
+import { Personel } from '../models/personel.model';
 
 @Injectable({
   providedIn: 'root'
@@ -13,10 +15,10 @@ export class PersonelService {
     this.http = inject(HttpClient);
   }
 
-  getPersonelList(): Observable<any> {
-    return this.http.get("http://localhost:5100/api/OAS/getpersonellist");
+  getPersonelList(): Observable<ResultDto<Personel[]>> {
+    return this.http.get<ResultDto<Personel[]>>("http://localhost:5100/api/OAS/getpersonellist");
   }
-  getPersonelSepet(personelId: number): Observable<any> {
+  getPersonelSepet(personelId: number): Observable<ResultDto<>> {
     return this.http.get("http://localhost:5100/api/OAS/getpersonelsepet/" + personelId);
   }
 }

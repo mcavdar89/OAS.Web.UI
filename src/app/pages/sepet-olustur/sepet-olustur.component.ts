@@ -3,7 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { DropdownModule } from 'primeng/dropdown';
 import { Urun } from '../../models/urun.model';
 import { ButtonModule } from 'primeng/button';
-import { AlisVerisList } from '../../models/alisveris-list.model';
+import { AlisVerisList } from '../../models/personel-sepet-urun.model';
 import { InputTextModule } from 'primeng/inputtext';
 import { PersonelService } from '../../services/personel.service';
 import { UrunService } from '../../services/urun.service';

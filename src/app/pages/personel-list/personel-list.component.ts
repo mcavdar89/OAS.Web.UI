@@ -1,7 +1,7 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { Personel } from '../../models/personel.model';
 import { SepetOlusturComponent } from '../sepet-olustur/sepet-olustur.component';
-import { AlisVerisList } from '../../models/alisveris-list.model';
+import { AlisVerisList } from '../../models/personel-sepet-urun.model';
 import { PersonelService } from '../../services/personel.service';
 import { DialogModule } from 'primeng/dialog';
 
