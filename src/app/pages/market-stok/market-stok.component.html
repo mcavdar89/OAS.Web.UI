@@ -1,0 +1,40 @@
+<div class="row">
+  <div class="col-10">
+      <p-dropdown [options]="urunList" optionValue="id" optionLabel="ad" [(ngModel)]="secilenUrunId" appendTo="body"
+          [style]="{'width':'100%'}"></p-dropdown>
+  </div>
+  <div class="col-2">
+      <p-button label="Ekle" (onClick)="urunEkle()" />
+  </div>
+</div>
+
+
+<table class="table table-striped">
+  <thead>
+      <tr>
+          <th scope="col">#</th>
+          <th scope="col">Urun Ad</th>
+          <th scope="col">Fiyat</th>
+          <th scope="col">Stok</th>
+          <th scope="col">Puan</th>
+      </tr>
+  </thead>
+  <tbody>
+     
+    @for (item of marketUrunList; track item.id; let i = $index) {
+        <tr>
+          <td >{{i+1}}</td>
+          <td >{{item.urunAd}}</td>
+          <td > 
+            <input type="number" pInputText [(ngModel)]="item.fiyat"  />
+            {{item.fiyat}}
+          
+          </td>
+          <td > <input type="number" pInputText [(ngModel)]="item.stok" /></td>
+          <td >{{item.puan}}</td>
+
+        </tr>
+      }
+
+  </tbody>
+</table>

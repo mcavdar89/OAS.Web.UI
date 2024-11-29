@@ -1,4 +1,4 @@
-export interface MarketUrunList {
+export interface MarketUrun {
     id:string;
     marketId:number;
     urunId:number;

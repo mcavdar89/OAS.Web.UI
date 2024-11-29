@@ -2,12 +2,13 @@ import { Component, inject, OnInit } from '@angular/core';
 import { MarketService } from '../../services/market.service';
 import { Market } from '../../models/market.model';
 import { DialogModule } from 'primeng/dialog';
+import { MarketStokComponent } from '../market-stok/market-stok.component';
 
 @Component({
   selector: 'app-market-list',
   templateUrl: './market-list.component.html',
   standalone: true,
-  imports:  [DialogModule],
+  imports:  [DialogModule,MarketStokComponent],
   styleUrls: ['./market-list.component.css']
 })
 export class MarketListComponent implements OnInit {
