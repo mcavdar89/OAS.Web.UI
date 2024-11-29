@@ -9,11 +9,13 @@ import { ButtonModule } from 'primeng/button';
 import { Urun } from '../../models/urun.model';
 import { UrunService } from '../../services/urun.service';
 import { Guid } from 'guid-typescript';
+import { DialogModule } from 'primeng/dialog';
+import { UrunFormComponent } from '../urun-form/urun-form.component';
 
 @Component({
   selector: 'app-market-stok',
   standalone: true,
-  imports: [FormsModule, DropdownModule, InputTextModule, ButtonModule],
+  imports: [FormsModule, DropdownModule, InputTextModule, ButtonModule,DialogModule,UrunFormComponent],
   templateUrl: './market-stok.component.html',
   styleUrls: ['./market-stok.component.css'],
 
@@ -27,6 +29,9 @@ export class MarketStokComponent implements OnInit {
   urunList: Urun[] | undefined;
   //dropdown ngModel
   secilenUrunId: number | undefined;
+
+  urunFormVisible: boolean = false;
+
 
 
   private _marketService: MarketService;
@@ -48,32 +53,28 @@ export class MarketStokComponent implements OnInit {
   }
 
 
-  urunEkle(){
-    if(!this.secilenUrunId){
+  stokUrunEkle() {
+    if (!this.secilenUrunId) {
       alert("Lütfen bir ürün seçiniz");
       return;
     }
-    let marketUrun:MarketUrun = {
-      id:Guid.create().toString(),
-      marketId:this.marketId!,
-      urunId:this.secilenUrunId!,
-      urunAd:this.urunList?.find(x=>x.id==this.secilenUrunId)?.ad!,
-      stok:0,
-      fiyat:0,
-      puan:0
+    let marketUrun: MarketUrun = {
+      id: Guid.create().toString(),
+      marketId: this.marketId!,
+      urunId: this.secilenUrunId!,
+      urunAd: this.urunList?.find(x => x.id == this.secilenUrunId)?.ad!,
+      stok: 0,
+      fiyat: 0,
+      puan: 0
     }
     this.marketUrunList.push(marketUrun);
     this.secilenUrunId = undefined;
   }
 
-  eksiKontrolu(deger:number){
-    if(deger<0){
-      alert("Stok miktarı 0'dan küçük olamaz");
-    
-      return 0;
-    }
-    return deger;
+  yeniUrunEkle() {
+    this.urunFormVisible = true;
   }
+
 
 
 }
