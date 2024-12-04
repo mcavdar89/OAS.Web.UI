@@ -1,3 +1,37 @@
-<p>
-  urun-form works!
-</p>
+
+
+
+
+
+<!-- Template Direven Form Örneği -->
+
+<!-- ts tarafı
+kaydet(frmUrun:any){
+  debugger;
+  console.log(frmUrun);
+  if(frmUrun.valid){
+    ilgili kaydetme servisi çağırılacak
+  }
+
+} -->
+<!-- <form #frmUrun="ngForm" (ngSubmit)="kaydet(frmUrun)">
+
+
+  <div class="flex flex-column">
+    <label for="username">Miktar Türü</label>
+    <p-dropdown name="miktarTurId" [options]="urunMiktarTurList" optionValue="id" optionLabel="ad" [(ngModel)]="data.miktarTurId"
+      appendTo="body" [style]="{'width':'100%'}"
+      required 
+      >
+    </p-dropdown>
+  </div>
+  <div class="flex">
+    <label for="ad">Ürün Ad</label>
+    <input pInputText name="ad" style="width: 100%;" [(ngModel)]="data.ad" required minlength="3" />
+    <div *ngIf="frmUrun.controls['ad'].hasError('required')">alanı doldurun</div>
+    <div *ngIf="frmUrun.controls['ad'].hasError('minlength')">min 3 karakter</div>
+   
+    
+  </div>
+  <button type="submit" class="btn btn-success" >Kaydet</button>
+</form> -->

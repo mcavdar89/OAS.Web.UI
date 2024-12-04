@@ -43,14 +43,18 @@
         <input type="number" pInputText [(ngModel)]="guncellenecekUrun!.stok" />
         }
         @else {
-          {{item.stok}}
+        {{item.stok}}
         }
       </td>
       <td>{{item.puan}}</td>
       <td>
         @if(item.id == guncellenecekUrun?.id){
+        @if(!isLoading){
         <button type="button" class="btn btn-success" (click)="kaydetMarketStok(item)">Kaydet</button>
         <button type="button" class="btn btn-danger" (click)="vazgecGuncelle()">Vazgeç</button>
+        }@else{
+        <div class="loader" style="width: 40px; height: 40px;"></div>
+        }
         }
         @else{
         <button type="button" class="btn btn-warning" (click)="setGuncelle(item)"><i class="pi pi-pencil"></i>

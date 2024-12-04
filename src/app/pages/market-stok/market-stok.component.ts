@@ -11,11 +11,12 @@ import { UrunService } from '../../services/urun.service';
 import { Guid } from 'guid-typescript';
 import { DialogModule } from 'primeng/dialog';
 import { UrunFormComponent } from '../urun-form/urun-form.component';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-market-stok',
   standalone: true,
-  imports: [FormsModule, DropdownModule, InputTextModule, ButtonModule, DialogModule, UrunFormComponent],
+  imports: [FormsModule,CommonModule, DropdownModule, InputTextModule, ButtonModule, DialogModule, UrunFormComponent],
   templateUrl: './market-stok.component.html',
   styleUrls: ['./market-stok.component.css'],
 
@@ -40,6 +41,10 @@ export class MarketStokComponent implements OnInit {
 
   private _marketService: MarketService;
   private _urunService: UrunService;
+
+  isLoading:boolean = false;
+
+
   constructor() {
     this._marketService = inject(MarketService);
     this._urunService = inject(UrunService);
@@ -63,7 +68,8 @@ export class MarketStokComponent implements OnInit {
       return;
     }
     let marketUrun: MarketUrun = {
-      id: Guid.create().toString(),
+      //ürün kaydedilmeden id oluşmayacak
+      //id: Guid.create().toString(),
       marketId: this.marketId!,
       urunId: this.secilenUrunId!,
       urunAd: this.urunList?.find(x => x.id == this.secilenUrunId)?.ad!,
@@ -73,6 +79,7 @@ export class MarketStokComponent implements OnInit {
     }
     this.marketUrunList.push(marketUrun);
     this.secilenUrunId = undefined;
+    this.guncellenecekUrun = {...marketUrun}
   }
 
   yeniUrunEkle() {
@@ -83,9 +90,15 @@ export class MarketStokComponent implements OnInit {
     this.guncellenecekUrun = { ...item };
   }
   vazgecGuncelle() {
+    if(!this.guncellenecekUrun?.id){
+      this.marketUrunList = this.marketUrunList.filter(d=>d.id)
+    }   
+    
     this.guncellenecekUrun = undefined;
+
   }
   kaydetMarketStok(item: MarketUrun) {
+    this.isLoading = true;
     this._marketService.kaydetMarketStok(this.guncellenecekUrun!).subscribe(resp => {
       debugger;
       if (resp.isSuccess) {
@@ -95,7 +108,7 @@ export class MarketStokComponent implements OnInit {
       } else {
         alert(resp.message);
       }
-
+      this.isLoading = false;
     });
   }
 
