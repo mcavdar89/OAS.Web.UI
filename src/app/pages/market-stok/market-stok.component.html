@@ -30,22 +30,33 @@
       <td>{{i+1}}</td>
       <td>{{item.urunAd}}</td>
       <td>
-        <input type="number" pInputText [(ngModel)]="item.fiyat" />
+        @if(item.id == guncellenecekUrun?.id){
+        <input type="number" pInputText [(ngModel)]="guncellenecekUrun!.fiyat" />
+        }
+        @else {
         {{item.fiyat}}
+        }
 
       </td>
-      <td> <input type="number" pInputText [(ngModel)]="item.stok" /></td>
+      <td>
+        @if(item.id == guncellenecekUrun?.id){
+        <input type="number" pInputText [(ngModel)]="guncellenecekUrun!.stok" />
+        }
+        @else {
+          {{item.stok}}
+        }
+      </td>
       <td>{{item.puan}}</td>
       <td>
         @if(item.id == guncellenecekUrun?.id){
-          <button type="button" class="btn btn-success">Kaydet</button>
-          <button type="button" class="btn btn-danger">Vazgeç</button>
+        <button type="button" class="btn btn-success" (click)="kaydetMarketStok(item)">Kaydet</button>
+        <button type="button" class="btn btn-danger" (click)="vazgecGuncelle()">Vazgeç</button>
         }
         @else{
-          <button type="button" class="btn btn-warning" (click)="setGuncelle(item)"><i class="pi pi-pencil"></i>
-          </button>
+        <button type="button" class="btn btn-warning" (click)="setGuncelle(item)"><i class="pi pi-pencil"></i>
+        </button>
         }
-        
+
 
       </td>
     </tr>

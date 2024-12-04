@@ -22,4 +22,8 @@ export class MarketService {
     return this._http.get<ResultDto<MarketUrun[]>>("http://localhost:5100/api/OAS/getmarketurunlist/"+marketId)
   }
 
+  kaydetMarketStok(item:MarketUrun):Observable<ResultDto<MarketUrun>>{
+    return this._http.post<ResultDto<MarketUrun>>("http://localhost:5100/api/OAS/kaydetmarketurun",item);
+  }
+
 }

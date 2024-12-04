@@ -80,7 +80,24 @@ export class MarketStokComponent implements OnInit {
   }
 
   setGuncelle(item: MarketUrun) {
-    this.guncellenecekUrun = {...item};
+    this.guncellenecekUrun = { ...item };
   }
+  vazgecGuncelle() {
+    this.guncellenecekUrun = undefined;
+  }
+  kaydetMarketStok(item: MarketUrun) {
+    this._marketService.kaydetMarketStok(this.guncellenecekUrun!).subscribe(resp => {
+      debugger;
+      if (resp.isSuccess) {
+        let index = this.marketUrunList.findIndex(d => d.urunId == item.urunId);
+        this.marketUrunList[index] = resp.data;
+        this.guncellenecekUrun = undefined;
+      } else {
+        alert(resp.message);
+      }
+
+    });
+  }
+
 
 }
