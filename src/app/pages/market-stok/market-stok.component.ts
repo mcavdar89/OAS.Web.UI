@@ -15,7 +15,7 @@ import { UrunFormComponent } from '../urun-form/urun-form.component';
 @Component({
   selector: 'app-market-stok',
   standalone: true,
-  imports: [FormsModule, DropdownModule, InputTextModule, ButtonModule,DialogModule,UrunFormComponent],
+  imports: [FormsModule, DropdownModule, InputTextModule, ButtonModule, DialogModule, UrunFormComponent],
   templateUrl: './market-stok.component.html',
   styleUrls: ['./market-stok.component.css'],
 
@@ -25,6 +25,10 @@ export class MarketStokComponent implements OnInit {
   @Input() marketId: number | undefined;
 
   marketUrunList: MarketUrun[] = [];
+
+  guncellenecekUrun: MarketUrun | undefined;
+
+
   //dropdown için gerekli
   urunList: Urun[] | undefined;
   //dropdown ngModel
@@ -75,6 +79,8 @@ export class MarketStokComponent implements OnInit {
     this.urunFormVisible = true;
   }
 
-
+  setGuncelle(item: MarketUrun) {
+    this.guncellenecekUrun = {...item};
+  }
 
 }
