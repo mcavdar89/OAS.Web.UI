@@ -42,7 +42,7 @@ export class SepetOlusturComponent implements OnInit {
   ngOnInit(): void {
 
     this._personelService.getPersonelSepet(this.personelId!).subscribe(resp => {
-      debugger;
+
       if (resp.isSuccess)
         this.personelSepet = resp.data
       else

@@ -1,4 +1,22 @@
-
+<form [formGroup]="frmUrun">
+  <div class="flex flex-column">
+    <label for="username">Miktar Türü</label>
+    <p-dropdown [options]="urunMiktarTurList" optionValue="id" optionLabel="ad" formControlName="miktarTurId" appendTo="body"
+      [style]="{'width':'100%'}">
+    </p-dropdown>
+  </div>
+  <div class="flex">
+    <label for="ad">Ürün Ad</label>
+    <input pInputText name="ad" style="width: 100%;" formControlName="ad" />
+    <div *ngIf="frmUrun!.controls['ad'].hasError('required')" class="alert alert-danger" role="alert">
+      Boş geçilemez!
+    </div>
+    <div *ngIf="frmUrun!.controls['ad'].hasError('minlength')" class="alert alert-danger" role="alert">
+      Minumum 3 karakter olmalı!
+    </div>
+  </div>
+  <button type="button" class="btn btn-success" (click)="kaydet(frmUrun!.value)">Kaydet</button>
+</form>
 
 
 
@@ -7,7 +25,7 @@
 
 <!-- ts tarafı
 kaydet(frmUrun:any){
-  debugger;
+
   console.log(frmUrun);
   if(frmUrun.valid){
     ilgili kaydetme servisi çağırılacak

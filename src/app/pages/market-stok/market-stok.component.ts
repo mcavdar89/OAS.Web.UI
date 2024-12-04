@@ -52,7 +52,6 @@ export class MarketStokComponent implements OnInit {
 
   ngOnInit() {
     this._marketService.getMarketUrunList(this.marketId!).subscribe(resp => {
-      debugger;
       this.marketUrunList = resp.data;
     });
 
@@ -100,7 +99,7 @@ export class MarketStokComponent implements OnInit {
   kaydetMarketStok(item: MarketUrun) {
     this.isLoading = true;
     this._marketService.kaydetMarketStok(this.guncellenecekUrun!).subscribe(resp => {
-      debugger;
+
       if (resp.isSuccess) {
         let index = this.marketUrunList.findIndex(d => d.urunId == item.urunId);
         this.marketUrunList[index] = resp.data;
@@ -111,6 +110,10 @@ export class MarketStokComponent implements OnInit {
       this.isLoading = false;
     });
   }
-
+  setKaydetUrun(item:Urun){
+    this.urunList?.push(item);
+    this.secilenUrunId = item.id;
+    this.urunFormVisible = false;
+  }
 
 }

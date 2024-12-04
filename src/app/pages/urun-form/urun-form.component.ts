@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject, OnInit } from '@angular/core';
-import { Form, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { Component, EventEmitter, inject, OnInit, Output, output } from '@angular/core';
+import { Form, FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { ButtonModule } from 'primeng/button';
 import { DropdownModule } from 'primeng/dropdown';
@@ -12,21 +12,41 @@ import { Urun } from '../../models/urun.model';
 @Component({
   selector: 'app-urun-form',
   standalone: true,
-  imports: [CommonModule,ReactiveFormsModule,  FormsModule, DropdownModule, InputTextModule, ButtonModule,],
+  imports: [CommonModule, ReactiveFormsModule, FormsModule, DropdownModule, InputTextModule, ButtonModule,],
   templateUrl: './urun-form.component.html',
   styleUrls: ['./urun-form.component.css']
 })
 export class UrunFormComponent implements OnInit {
 
+  @Output() setKaydetUrun:EventEmitter<Urun> = new EventEmitter();
+
   urunMiktarTurList: UrunMiktarTur[] = [];
   data: Urun = { id: 0, ad: '', miktarTurId: 0 } as Urun;
 
   private _urunService: UrunService;
-  constructor() {
+
+  // frmUrun: FormGroup = new FormGroup({
+  //   ad: new FormControl(),
+  //   miktarTurId: new FormControl()
+  // });
+
+  frmUrun: FormGroup;
+
+  constructor(private fb: FormBuilder) {
     this._urunService = inject(UrunService);
+
+    this.frmUrun = this.fb.group({
+      id:'',
+      ad: ['', [Validators.required, Validators.minLength(3)]],
+      miktarTurId: ['', [Validators.required]]
+    })
+
   }
 
   ngOnInit() {
+    this.data = { id: 0, ad: '', miktarTurId: 0 };
+
+    this.frmUrun.patchValue(this.data);
 
     this._urunService.getUrunMiktarTurListForDropDown().subscribe(resp => {
       this.urunMiktarTurList = resp.data;
@@ -34,11 +54,13 @@ export class UrunFormComponent implements OnInit {
 
   }
 
-  kaydet(frmUrun:any){
+  kaydet(item: Urun) {
     debugger;
-    console.log(frmUrun);
-    if(frmUrun.valid){
-
+    if (this.frmUrun!.valid) {
+      this._urunService.kaydetUrun(item).subscribe(resp => {
+        //ilgili işlemler yapılacak
+        this.setKaydetUrun.emit(resp.data);
+      });
     }
 
   }

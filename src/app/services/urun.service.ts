@@ -21,5 +21,8 @@ export class UrunService {
     return this._http.get<ResultDto<UrunMiktarTur[]>>("http://localhost:5100/api/OAS/getmiktarturlistfordropdown");
   }
 
+  kaydetUrun(item:Urun): Observable<ResultDto<Urun>> {
+    return this._http.post<ResultDto<Urun>>("http://localhost:5100/api/OAS/kaydeturun",item);
+  }
 
 }

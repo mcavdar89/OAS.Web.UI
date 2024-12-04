@@ -33,7 +33,7 @@ export class PersonelListComponent implements OnInit {
         this.personelList = resp.data;
       else
         alert(resp.message);
-      debugger;
+
       console.log('personel listesi : ', this.personelList);  //gelen verileri ne ise onu yazdırır
 
     });

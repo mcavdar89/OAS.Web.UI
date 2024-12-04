@@ -79,7 +79,7 @@
   </ng-template>
   <ng-template pTemplate="content">
     @if(urunFormVisible){
-    <app-urun-form></app-urun-form>
+    <app-urun-form (setKaydetUrun)="setKaydetUrun($event)"></app-urun-form>
     }
   </ng-template>
 
