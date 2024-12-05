@@ -1,0 +1,14 @@
+
+<form [formGroup]="frmLogin" style="max-width: 600px;margin-left: auto;margin-right: auto;padding: 20px;">
+  <div class="form-group">
+    <label>E-Posta</label>
+    <input class="form-control" type="email" pInputText formControlName="ePosta" />
+  </div>
+  <div class="form-group">
+    <label>Şifre</label>
+    <input class="form-control" type="password" pInputText formControlName="password" />
+  </div>
+  <br>
+  <br>
+  <p-button label="Submit" (onClick)="login(frmLogin.value)"/>
+</form>
