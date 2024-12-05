@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
+import { AuthService } from '../services/auth.service';
+import { UserDto } from '../models/user-dto.model';
 
 @Component({
   selector: 'app-app-main',
@@ -10,9 +12,15 @@ import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 })
 export class AppMainComponent implements OnInit {
 
-  constructor() { }
+  private _authService: AuthService;
+  userDto?:UserDto;
+  constructor() { 
+    this._authService = inject(AuthService);
+  }
 
   ngOnInit() {
+    debugger;
+    this.userDto = this._authService.getLocalUser();
   }
 
 }
