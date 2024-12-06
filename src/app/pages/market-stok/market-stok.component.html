@@ -26,7 +26,7 @@
   <tbody>
 
     @for (item of marketUrunList; track item.id; let i = $index) {
-    <tr>
+    <tr [appStokAlarm]="item.stok">
       <td>{{i+1}}</td>
       <td>{{item.urunAd}}</td>
       <td>

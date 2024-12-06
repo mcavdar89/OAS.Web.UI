@@ -14,11 +14,12 @@ import { UrunFormComponent } from '../urun-form/urun-form.component';
 import { CommonModule } from '@angular/common';
 import { ParaPipe } from '../../pipes/para.pipe';
 import { OnyPozitifNumberDirective } from '../../directives/ony-pozitif-number.directive';
+import { StokAlarmDirective } from '../../directives/stok-alarm.directive';
 
 @Component({
   selector: 'app-market-stok',
   standalone: true,
-  imports: [FormsModule,CommonModule, DropdownModule, InputTextModule, ButtonModule, DialogModule, UrunFormComponent,ParaPipe,OnyPozitifNumberDirective],
+  imports: [FormsModule,CommonModule, DropdownModule, InputTextModule, ButtonModule, DialogModule, UrunFormComponent,ParaPipe,OnyPozitifNumberDirective,StokAlarmDirective],
   templateUrl: './market-stok.component.html',
   styleUrls: ['./market-stok.component.css'],
 

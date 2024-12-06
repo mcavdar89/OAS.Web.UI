@@ -16,11 +16,11 @@ export class OnyPozitifNumberDirective {
   }
   @HostListener('blur',['$event'])
   onMouseLeave(event:MouseEvent){
-    debugger
+ 
     if(this.el.nativeElement.value<0){
       this.el.nativeElement.value=this.el.nativeElement.value*-1;
     }
-    debugger;
+
     console.log("Mouse Leave");
   }
 

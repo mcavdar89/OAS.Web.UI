@@ -8,6 +8,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { UrunMiktarTur } from '../../models/urun-miktar-tur.model';
 import { UrunService } from '../../services/urun.service';
 import { Urun } from '../../models/urun.model';
+import { conditionalRequiredValidator } from '../../validators/conditional-required.validator';
 
 @Component({
   selector: 'app-urun-form',
@@ -21,7 +22,7 @@ export class UrunFormComponent implements OnInit {
   @Output() setKaydetUrun:EventEmitter<Urun> = new EventEmitter();
 
   urunMiktarTurList: UrunMiktarTur[] = [];
-  data: Urun = { id: 0, ad: '', miktarTurId: 0 } as Urun;
+  data: Urun = { id: 0, ad: '', miktarTurId:0  } as Urun;
 
   private _urunService: UrunService;
 
@@ -37,8 +38,8 @@ export class UrunFormComponent implements OnInit {
 
     this.frmUrun = this.fb.group({
       id:'',
-      ad: ['', [Validators.required, Validators.minLength(3)]],
-      miktarTurId: ['', [Validators.required]]
+      ad: ['', []],
+      miktarTurId: ['', [conditionalRequiredValidator('ad','1')]]
     })
 
   }
@@ -55,7 +56,7 @@ export class UrunFormComponent implements OnInit {
   }
 
   kaydet(item: Urun) {
-
+debugger;
     if (this.frmUrun!.valid) {
       this._urunService.kaydetUrun(item).subscribe(resp => {
         //ilgili işlemler yapılacak
