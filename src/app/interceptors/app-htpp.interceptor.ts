@@ -12,7 +12,7 @@ export const appHtppInterceptor: HttpInterceptorFn = (req, next) => {
   let router: Router = inject(Router);
 
   let token = authService.getLocalToken();
-debugger;
+
   req = req.clone({
     //url: `${environment.apiBaseUrl}/${req.url}`,
     url: `${appConfig.apiBaseUrl}/${req.url}`,

@@ -40,7 +40,7 @@
       </td>
       <td>
         @if(item.id == guncellenecekUrun?.id){
-        <input type="number" pInputText [(ngModel)]="guncellenecekUrun!.stok" />
+        <input type="number" pInputText [(ngModel)]="guncellenecekUrun!.stok" appOnyPozitifNumber />
         }
         @else {
         {{item.stok}}

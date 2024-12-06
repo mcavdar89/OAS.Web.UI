@@ -55,7 +55,7 @@ export class UrunFormComponent implements OnInit {
   }
 
   kaydet(item: Urun) {
-    debugger;
+
     if (this.frmUrun!.valid) {
       this._urunService.kaydetUrun(item).subscribe(resp => {
         //ilgili işlemler yapılacak

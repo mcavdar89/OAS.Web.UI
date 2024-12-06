@@ -35,7 +35,7 @@ export class LoginComponent implements OnInit {
 
   login(item: LoginDto) {
     this.authservice.login(item).subscribe(resp => {
-      debugger;
+
       if (resp.isSuccess) {
         this.authservice.setLocalToken(resp.data);
         this.router.navigate([""]);

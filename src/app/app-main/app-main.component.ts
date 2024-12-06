@@ -19,7 +19,6 @@ export class AppMainComponent implements OnInit {
   }
 
   ngOnInit() {
-    debugger;
     this.userDto = this._authService.getLocalUser();
   }
 
