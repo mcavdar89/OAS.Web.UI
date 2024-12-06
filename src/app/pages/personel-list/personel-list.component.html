@@ -10,10 +10,10 @@
         </tr>
     </thead>
     <tbody>
-        @for (item of personelList; track $index; let i = $index) {
+        @for (item of personelList ; track $index; let i = $index) {
         <tr>
             <td scope="row">{{i+1}}</td>
-            <td>{{item.ad}}</td>
+            <td>{{item.ad |maskele:2}}</td>
             <td>{{item.soyad}}</td>
             <td>{{item.birimAd}}</td>
             <td>{{item.sepetUrunSayisi}}</td>

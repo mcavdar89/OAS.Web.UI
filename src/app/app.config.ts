@@ -5,12 +5,18 @@ import { routes } from './app.routes';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { appHtppInterceptor } from './interceptors/app-htpp.interceptor';
+import { environment } from '../environments/environment';
+import { AppConfig } from './models/app-config';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideZoneChangeDetection({ eventCoalescing: true }), 
     provideRouter(routes),
     provideAnimations(),
-    provideHttpClient(withInterceptors([appHtppInterceptor]))
+    provideHttpClient(withInterceptors([appHtppInterceptor])),
+    {
+      provide: AppConfig,
+      useValue: environment
+    }
   ]
 };

@@ -5,4 +5,5 @@ export interface PersonelSepetUrun{
     urunAd: string
     miktar: number
     tutar: number
+    lastTransactionDate?: Date
 }

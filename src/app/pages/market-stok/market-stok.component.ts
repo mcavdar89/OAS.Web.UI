@@ -12,11 +12,12 @@ import { Guid } from 'guid-typescript';
 import { DialogModule } from 'primeng/dialog';
 import { UrunFormComponent } from '../urun-form/urun-form.component';
 import { CommonModule } from '@angular/common';
+import { ParaPipe } from '../../pipes/para.pipe';
 
 @Component({
   selector: 'app-market-stok',
   standalone: true,
-  imports: [FormsModule,CommonModule, DropdownModule, InputTextModule, ButtonModule, DialogModule, UrunFormComponent],
+  imports: [FormsModule,CommonModule, DropdownModule, InputTextModule, ButtonModule, DialogModule, UrunFormComponent,ParaPipe],
   templateUrl: './market-stok.component.html',
   styleUrls: ['./market-stok.component.css'],
 

@@ -34,7 +34,7 @@
         <input type="number" pInputText [(ngModel)]="guncellenecekUrun!.fiyat" />
         }
         @else {
-        {{item.fiyat}}
+        {{item.fiyat |para:'tr'}}
         }
 
       </td>

@@ -17,14 +17,14 @@ export class PersonelService {
   }
 
   getPersonelList(): Observable<ResultDto<Personel[]>> {
-    return this.http.get<ResultDto<Personel[]>>("http://localhost:5100/api/OAS/getpersonellist");
+    return this.http.get<ResultDto<Personel[]>>("api/OAS/getpersonellist");
   }
   getPersonelSepet(personelId: number): Observable<ResultDto<PersonelSepet>> {
-    return this.http.get<ResultDto<PersonelSepet>>("http://localhost:5100/api/OAS/getpersonelsepet/" + personelId);
+    return this.http.get<ResultDto<PersonelSepet>>("api/OAS/getpersonelsepet/" + personelId);
   }
 
   kaydetPersonelSepet(personelSepet: PersonelSepet): Observable<ResultDto<PersonelSepet>> {
-    return this.http.post<ResultDto<PersonelSepet>>("http://localhost:5100/api/OAS/kaydetpersonelsepet", personelSepet);
+    return this.http.post<ResultDto<PersonelSepet>>("api/OAS/kaydetpersonelsepet", personelSepet);
   }
 
 

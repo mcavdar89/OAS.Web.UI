@@ -9,9 +9,10 @@ import { PersonelService } from '../../services/personel.service';
 import { UrunService } from '../../services/urun.service';
 import { PersonelSepet } from '../../models/personel-sepet';
 import { Guid } from "guid-typescript";
+import { DatePipe } from '@angular/common';
 @Component({
   selector: 'app-sepet-olustur',
-  imports: [FormsModule, DropdownModule, InputTextModule, ButtonModule],
+  imports: [FormsModule,DatePipe, DropdownModule, InputTextModule, ButtonModule],
   templateUrl: './sepet-olustur.component.html',
   styleUrl: './sepet-olustur.component.scss'
 })

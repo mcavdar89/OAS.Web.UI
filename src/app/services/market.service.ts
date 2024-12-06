@@ -15,15 +15,15 @@ export class MarketService {
   }
 
   getMarketList() :Observable<ResultDto<Market[]>>{
-    return this._http.get<ResultDto<Market[]>>("http://localhost:5100/api/OAS/getmarketlist");
+    return this._http.get<ResultDto<Market[]>>("api/OAS/getmarketlist");
   }
 
   getMarketUrunList(marketId: number) :Observable<ResultDto<MarketUrun[]>>{
-    return this._http.get<ResultDto<MarketUrun[]>>("http://localhost:5100/api/OAS/getmarketurunlist/"+marketId)
+    return this._http.get<ResultDto<MarketUrun[]>>("api/OAS/getmarketurunlist/"+marketId)
   }
 
   kaydetMarketStok(item:MarketUrun):Observable<ResultDto<MarketUrun>>{
-    return this._http.post<ResultDto<MarketUrun>>("http://localhost:5100/api/OAS/kaydetmarketurun",item);
+    return this._http.post<ResultDto<MarketUrun>>("api/OAS/kaydetmarketurun",item);
   }
 
 }

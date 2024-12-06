@@ -14,6 +14,9 @@
             <th scope="col">#</th>
             <th scope="col">Ürün Ad</th>
             <th scope="col">Miktar</th>
+            <th scope="col">Tarih</th>
+            <th scope="col">Sil</th>
+
         </tr>
     </thead>
     <tbody>
@@ -22,7 +25,11 @@
             <th scope="row">{{i+1}}</th>
             <td>{{item.urunAd}}</td>
             <td>
-                <input type="number" pInputText [(ngModel)]="item.miktar" /></td>
+                <input type="number" pInputText [(ngModel)]="item.miktar" />
+            </td>
+            <td>
+                {{item.lastTransactionDate | date:'dd.MM.yyyy HH:mm'}}
+            </td>
             <td>
                 <button type="button" class="btn btn-warning" (click)="urunSil(item.urunId)">Sil</button>
             </td>

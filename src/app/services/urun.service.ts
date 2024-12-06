@@ -15,14 +15,14 @@ export class UrunService {
   }
 
   getUrunListForDropDown(): Observable<ResultDto<Urun[]>> {
-    return this._http.get<ResultDto<Urun[]>>("http://localhost:5100/api/OAS/geturunlistfordropdown");
+    return this._http.get<ResultDto<Urun[]>>("api/OAS/geturunlistfordropdown");
   }
   getUrunMiktarTurListForDropDown(): Observable<ResultDto<UrunMiktarTur[]>> {
-    return this._http.get<ResultDto<UrunMiktarTur[]>>("http://localhost:5100/api/OAS/getmiktarturlistfordropdown");
+    return this._http.get<ResultDto<UrunMiktarTur[]>>("api/OAS/getmiktarturlistfordropdown");
   }
 
   kaydetUrun(item:Urun): Observable<ResultDto<Urun>> {
-    return this._http.post<ResultDto<Urun>>("http://localhost:5100/api/OAS/kaydeturun",item);
+    return this._http.post<ResultDto<Urun>>("api/OAS/kaydeturun",item);
   }
 
 }

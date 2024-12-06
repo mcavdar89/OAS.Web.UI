@@ -4,10 +4,11 @@ import { SepetOlusturComponent } from '../sepet-olustur/sepet-olustur.component'
 
 import { PersonelService } from '../../services/personel.service';
 import { DialogModule } from 'primeng/dialog';
+import { MaskelePipe } from '../../pipes/maskele.pipe';
 
 @Component({
   selector: 'app-personel-list',
-  imports: [SepetOlusturComponent, DialogModule],
+  imports: [SepetOlusturComponent, DialogModule,MaskelePipe],
   templateUrl: './personel-list.component.html',
   styleUrl: './personel-list.component.scss'
 })

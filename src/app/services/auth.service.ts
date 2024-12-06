@@ -19,7 +19,7 @@ export class AuthService {
   }
 
   login(item: LoginDto): Observable<ResultDto<string>> {
-    return this._http.post<ResultDto<string>>("http://localhost:5100/api/auth/login", item);
+    return this._http.post<ResultDto<string>>("api/auth/login", item);
   }
 
   isLogin(): boolean {
