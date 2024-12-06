@@ -13,9 +13,12 @@ export const appHtppInterceptor: HttpInterceptorFn = (req, next) => {
 
   let token = authService.getLocalToken();
 
+  let _url = req.url.indexOf('http') === 0 ? req.url : `${appConfig.apiBaseUrl}/${req.url}`;
+
+
   req = req.clone({
     //url: `${environment.apiBaseUrl}/${req.url}`,
-    url: `${appConfig.apiBaseUrl}/${req.url}`,
+    url: _url,//`${appConfig.apiBaseUrl}/${req.url}`,
     setHeaders: {
       Authorization: `Bearer ${token}`
     }
